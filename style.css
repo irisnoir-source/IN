@@ -411,6 +411,121 @@ h2 {
 }
 .product-card-soon:hover { transform: none; border-color: rgba(201,168,106,0.12); }
 
+/* ============================================
+   Raise the Bar — AI book series (in production)
+   Book-cover charcoal/ivory/Bodoni system nested
+   inside the IrisNoir noir + iris + gold frame.
+   ============================================ */
+.section-books {
+  background:
+    radial-gradient(ellipse 65% 55% at 12% 8%, rgba(109,74,148,0.20), transparent 62%),
+    radial-gradient(ellipse 75% 50% at 88% 100%, rgba(201,168,106,0.07), transparent 60%),
+    var(--noir);
+  border-top: 1px solid rgba(201,168,106,0.10);
+  border-bottom: 1px solid rgba(201,168,106,0.10);
+}
+/* the gold "ai" — series signature, color only, never resized */
+.rtb-ai { color: var(--gold); }
+.section-books h2 { margin-bottom: 1.1rem; }
+.rtb-rule {
+  width: 190px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 1.6rem;
+}
+.rtb-lede {
+  max-width: 58ch;
+  color: var(--text-dim);
+  font-size: 1rem;
+  line-height: 1.85;
+  margin: 0;
+}
+.rtb-lede em {
+  color: var(--cream);
+  font-style: normal;
+}
+
+/* --- the shelf of covers --- */
+.rtb-shelf {
+  margin-top: 3.2rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+.rtb-cover {
+  background: #1a1a1a;
+  aspect-ratio: 2 / 3;
+  padding: 11% 10%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(201,168,106,0.16);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.rtb-cover:hover {
+  border-color: rgba(201,168,106,0.45);
+  transform: translateY(-4px);
+}
+.rtb-mark {
+  font-family: 'Bodoni Moda', Georgia, serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  color: #f7f4ef;
+  margin: 0;
+}
+/* the bar — fixed position, never moves; shrink the title instead */
+.rtb-bar {
+  width: 34%;
+  height: 1px;
+  background: var(--gold);
+  margin: 9% 0 auto;
+}
+.rtb-title {
+  font-family: 'Bodoni Moda', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(1.15rem, 2.1vw, 1.7rem);
+  line-height: 1.06;
+  color: #f7f4ef;
+  margin: 0 0 auto;
+}
+.rtb-aud {
+  font-size: 0.55rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #8a857c;
+  margin: 0;
+}
+
+/* --- coming-soon badge row --- */
+.rtb-meta {
+  margin-top: 2.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+.rtb-badge {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,106,0.45);
+  padding: 0.42rem 1rem;
+}
+.rtb-meta-note {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 860px) {
+  .rtb-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+}
+@media (max-width: 460px) {
+  .rtb-shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.9rem; }
+  .rtb-cover { padding: 12% 9%; }
+  .rtb-mark { font-size: 0.72rem; }
+  .rtb-aud { font-size: 0.58rem; letter-spacing: 0.16em; }
+}
+
 /* Format picker (Standard vs Fillable, one click each) */
 .format-picker {
   margin-top: auto;
