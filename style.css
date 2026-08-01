@@ -980,3 +980,97 @@ h2 {
   color: #fff; font-size: 1.1rem; text-shadow: 0 1px 4px rgba(0,0,0,0.8);
   background: rgba(10,10,12,0.25);
 }
+
+/* Anime — Trimz interactive AI series (personal / for fun) */
+.section-anime {
+  background:
+    radial-gradient(ellipse 60% 55% at 88% 6%, rgba(109,74,148,0.20), transparent 62%),
+    radial-gradient(ellipse 70% 50% at 8% 96%, rgba(201,168,106,0.07), transparent 60%),
+    var(--noir-2);
+  border-top: 1px solid rgba(201,168,106,0.10);
+  border-bottom: 1px solid rgba(201,168,106,0.10);
+}
+.anime-rule {
+  width: 190px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 1.6rem;
+}
+.anime-lede {
+  max-width: 60ch;
+  color: var(--text);
+  margin-bottom: 3rem;
+}
+.anime-lede a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,106,0.35); }
+.anime-lede a:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+.anime-show {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.anime-poster-link {
+  display: block;
+  border: 1px solid rgba(201,168,106,0.22);
+  overflow: hidden;
+  transition: border-color 0.35s ease, transform 0.35s ease;
+}
+.anime-poster-link:hover { border-color: var(--gold); transform: translateY(-4px); }
+.anime-poster { display: block; width: 100%; height: auto; }
+.anime-show-body { min-width: 0; }
+.anime-title {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.anime-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1.05rem;
+  margin-bottom: 1.4rem;
+}
+.anime-synopsis { color: var(--text); margin-bottom: 1.8rem; max-width: 54ch; }
+.anime-facts { list-style: none; margin-bottom: 2rem; }
+.anime-facts li {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(201,168,106,0.10);
+}
+.anime-facts li:last-child { border-bottom: 1px solid rgba(201,168,106,0.10); }
+.anime-facts-k {
+  display: inline-block;
+  min-width: 5.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.anime-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.anime-meta {
+  margin-top: 2.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+.anime-badge {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,106,0.45);
+  padding: 0.42rem 1rem;
+}
+.anime-meta-note { font-size: 0.82rem; color: var(--text-dim); }
+.anime-meta-note a { color: var(--gold); text-decoration: none; }
+.anime-meta-note a:hover { color: var(--gold-bright); }
+
+@media (max-width: 760px) {
+  .anime-show { grid-template-columns: 1fr; gap: 2rem; }
+  .anime-poster-link { max-width: 260px; }
+}
