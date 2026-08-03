@@ -1074,3 +1074,233 @@ h2 {
   .anime-show { grid-template-columns: 1fr; gap: 2rem; }
   .anime-poster-link { max-width: 260px; }
 }
+
+/* ── IrisNoir Essays: "Food for Thought" ───────────────────────────────── */
+.section-essays {
+  background: linear-gradient(180deg, var(--noir) 0%, var(--noir-2) 100%);
+  border-top: 1px solid rgba(201,168,106,0.10);
+}
+.essay-rule {
+  width: 54px; height: 1px;
+  background: linear-gradient(90deg, var(--gold), rgba(201,168,106,0));
+  margin: 1.4rem 0 1.8rem;
+}
+.essays-lede {
+  max-width: 62ch; color: var(--text);
+  font-size: 1.02rem; margin-bottom: 3rem;
+}
+.essays-lede a, .essays-hero-lede a {
+  color: var(--gold); text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,106,0.35);
+}
+.essays-lede a:hover, .essays-hero-lede a:hover {
+  color: var(--gold-bright); border-bottom-color: var(--gold-bright);
+}
+
+/* Teaser cards — italic summary, whole card clickable (portfolio pattern) */
+.essay-teasers {
+  display: grid; gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  margin-bottom: 2.6rem;
+}
+.essay-teaser {
+  display: flex; flex-direction: column;
+  padding: 2rem 1.9rem 1.7rem;
+  background: rgba(30,25,38,0.55);
+  border: 1px solid rgba(201,168,106,0.16);
+  border-radius: 3px; text-decoration: none;
+  transition: border-color .25s ease, transform .25s ease, background .25s ease;
+}
+.essay-teaser:hover {
+  border-color: rgba(201,168,106,0.5);
+  background: rgba(30,25,38,0.85);
+  transform: translateY(-4px);
+}
+.essay-teaser-num {
+  font-family: var(--sans); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.3em; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.essay-teaser-title {
+  font-family: var(--serif); font-size: 1.5rem; font-weight: 500;
+  line-height: 1.25; color: var(--cream); margin-bottom: 0.9rem;
+}
+.essay-teaser-sum {
+  font-family: var(--serif); font-size: 1.02rem; line-height: 1.65;
+  color: var(--text-dim); margin-bottom: 1.6rem; flex-grow: 1;
+}
+.essay-teaser-cta {
+  font-family: var(--sans); font-size: 0.74rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);
+}
+.essay-teaser-arrow {
+  display: inline-block; margin-left: 0.3rem;
+  transition: transform .25s ease;
+}
+.essay-teaser:hover .essay-teaser-arrow,
+.gj-card:hover .essay-teaser-arrow { transform: translateX(5px); }
+
+/* ── essays.html ───────────────────────────────────────────────────────── */
+.essays-hero {
+  padding: 11rem 0 4rem;
+  background: linear-gradient(180deg, var(--noir-2) 0%, var(--noir) 100%);
+  border-bottom: 1px solid rgba(201,168,106,0.12);
+}
+.essays-hero h1 {
+  font-family: var(--serif); font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-weight: 500; line-height: 1.05; color: var(--cream);
+}
+.essays-hero-lede {
+  max-width: 60ch; color: var(--text); font-size: 1.05rem;
+  margin-bottom: 1.6rem;
+}
+.essay-badge {
+  display: inline-block; font-family: var(--sans);
+  font-size: 0.66rem; font-weight: 600; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--gold);
+  padding: 0.4rem 0.85rem;
+  border: 1px solid rgba(201,168,106,0.35); border-radius: 2px;
+}
+.essays-wrap { max-width: 720px; }
+.essay {
+  padding-bottom: 4.5rem; margin-bottom: 4.5rem;
+  border-bottom: 1px solid rgba(201,168,106,0.13);
+}
+.essay:last-of-type { border-bottom: none; }
+.essay-num {
+  font-family: var(--sans); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.9rem;
+}
+.essay-title {
+  font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.7rem);
+  font-weight: 500; line-height: 1.15; color: var(--cream);
+  margin-bottom: 1.4rem;
+}
+.essay-standfirst {
+  font-family: var(--serif); font-size: 1.12rem; line-height: 1.7;
+  color: var(--gold); padding-left: 1.2rem;
+  border-left: 2px solid rgba(201,168,106,0.4);
+  margin-bottom: 2.4rem;
+}
+.essay-body p {
+  font-family: var(--serif); font-size: 1.14rem; line-height: 1.82;
+  color: var(--text); margin-bottom: 1.5rem;
+}
+.essay-body em { color: var(--cream); }
+.essay-break {
+  width: 46px; height: 1px;
+  background: rgba(201,168,106,0.3);
+  margin: 2.6rem auto 2.8rem;
+}
+.essays-outro { text-align: center; padding-top: 1rem; }
+.essays-outro-note {
+  font-family: var(--serif); font-style: italic;
+  color: var(--text-dim); margin-bottom: 1.6rem;
+}
+.essays-outro .btn { margin: 0 0.4rem 0.7rem; }
+
+/* ── The Great Judgment ────────────────────────────────────────────────── */
+.gj-card {
+  display: grid; grid-template-columns: 250px 1fr;
+  gap: 2.4rem; align-items: center;
+  margin-top: 2.6rem; padding: 1.7rem;
+  background: rgba(30,25,38,0.5);
+  border: 1px solid rgba(201,168,106,0.18);
+  border-radius: 3px; text-decoration: none;
+  transition: border-color .25s ease, transform .25s ease, background .25s ease;
+}
+.gj-card:hover {
+  border-color: var(--gold); transform: translateY(-4px);
+  background: rgba(30,25,38,0.8);
+}
+.gj-card-art img, .gj-char-art img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid rgba(201,168,106,0.2); border-radius: 2px;
+}
+.gj-card-body { min-width: 0; }
+.gj-card-eyebrow {
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.8rem;
+}
+.gj-card-title {
+  font-family: var(--serif); font-size: 2rem; font-weight: 500;
+  line-height: 1.1; color: var(--cream); margin-bottom: 0.6rem;
+}
+.gj-card-tagline {
+  font-family: var(--serif); font-style: italic;
+  color: var(--iris-soft); margin-bottom: 1rem;
+}
+.gj-card-sum {
+  font-family: var(--serif); font-size: 1.02rem; line-height: 1.7;
+  color: var(--text-dim); margin-bottom: 1.4rem; max-width: 52ch;
+}
+
+.gj-hero {
+  padding: 10rem 0 5rem;
+  background: linear-gradient(180deg, var(--noir-2) 0%, var(--noir) 100%);
+  border-bottom: 1px solid rgba(201,168,106,0.12);
+}
+.gj-hero-grid {
+  display: grid; grid-template-columns: 340px 1fr;
+  gap: 3.4rem; align-items: center;
+}
+.gj-hero-art img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid rgba(201,168,106,0.3); border-radius: 3px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+}
+.gj-hero-body { min-width: 0; }
+.gj-hero h1 {
+  font-family: var(--serif); font-size: clamp(2.7rem, 6vw, 4.4rem);
+  font-weight: 500; line-height: 1.02; color: var(--cream);
+}
+.gj-tagline {
+  font-family: var(--serif); font-style: italic; font-size: 1.24rem;
+  color: var(--gold); margin-bottom: 1.3rem;
+}
+.gj-synopsis {
+  color: var(--text); max-width: 58ch; margin-bottom: 1.9rem;
+}
+.gj-synopsis strong { color: var(--cream); font-weight: 500; }
+.gj-synopsis a {
+  color: var(--gold); text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,106,0.35);
+}
+.gj-synopsis a:hover { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+.gj-facts { margin-bottom: 2rem; }
+.gj-meta { margin-top: 1.8rem; }
+
+.gj-cast { margin: 3rem 0 1rem; }
+.gj-char {
+  display: grid; grid-template-columns: 1.35fr 1fr;
+  gap: 2.6rem; align-items: center;
+  padding-bottom: 3.4rem; margin-bottom: 3.4rem;
+  border-bottom: 1px solid rgba(201,168,106,0.12);
+}
+.gj-char:last-child { border-bottom: none; margin-bottom: 1rem; }
+.gj-char-body { min-width: 0; }
+.gj-char-role {
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.7rem;
+}
+.gj-char-name {
+  font-family: var(--serif); font-size: 2.1rem; font-weight: 500;
+  color: var(--cream); margin-bottom: 1rem; line-height: 1.1;
+}
+.gj-char-desc {
+  font-family: var(--serif); font-size: 1.06rem; line-height: 1.78;
+  color: var(--text); max-width: 46ch;
+}
+
+@media (max-width: 880px) {
+  .gj-hero-grid, .gj-card, .gj-char { grid-template-columns: 1fr; }
+  .gj-hero { padding-top: 8rem; }
+  .gj-hero-art { max-width: 300px; margin: 0 auto; }
+  .gj-card { gap: 1.6rem; }
+  .gj-card-art { max-width: 220px; }
+  .gj-char { gap: 1.7rem; }
+  .essays-hero { padding-top: 9rem; }
+}
