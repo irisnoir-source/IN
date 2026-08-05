@@ -1389,3 +1389,54 @@ h2 {
   .bk-featured { grid-template-columns: 1fr; gap: 1.8rem; }
   .bk-cover { max-width: 220px; margin: 0 auto; }
 }
+
+/* ── Home-page hub: two doors to the sub-pages (books, anime+essays) ───── */
+.hub {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.8rem;
+  margin-top: 2.6rem;
+}
+.hub-card {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 1.6rem;
+  align-items: center;
+  padding: 1.7rem;
+  background: rgba(30,25,38,0.5);
+  border: 1px solid rgba(201,168,106,0.18);
+  border-radius: 3px;
+  text-decoration: none;
+  transition: border-color .25s ease, transform .25s ease, background .25s ease;
+}
+.hub-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  background: rgba(30,25,38,0.85);
+}
+.hub-art img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid rgba(201,168,106,0.22); border-radius: 2px;
+}
+.hub-body { min-width: 0; }
+.hub-eyebrow {
+  font-family: var(--sans); font-size: 0.66rem; font-weight: 600;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.7rem;
+}
+.hub-title {
+  font-family: var(--serif); font-size: 1.6rem; font-weight: 500;
+  line-height: 1.18; color: var(--cream); margin-bottom: 0.8rem;
+}
+.hub-sum {
+  font-family: var(--serif); font-size: 0.99rem; line-height: 1.65;
+  color: var(--text-dim); margin-bottom: 1.3rem;
+}
+
+/* Sub-page first section clears the fixed nav. */
+.subpage-lead { padding-top: 9rem; }
+
+@media (max-width: 880px) {
+  .hub-card { grid-template-columns: 100px 1fr; gap: 1.2rem; padding: 1.3rem; }
+  .subpage-lead { padding-top: 7.5rem; }
+}
