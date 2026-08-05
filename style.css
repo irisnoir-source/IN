@@ -1304,3 +1304,63 @@ h2 {
   .gj-char { gap: 1.7rem; }
   .essays-hero { padding-top: 9rem; }
 }
+
+/* ── Standalone KDP title: The Paycheck-to-Wealth Method ───────────────── */
+.ptw {
+  max-width: 720px;
+  margin: 4.5rem auto 0;
+  padding: 2.8rem 2.6rem 2.4rem;
+  background: rgba(30,25,38,0.5);
+  border: 1px solid rgba(201,168,106,0.18);
+  border-radius: 3px;
+}
+.ptw-title {
+  font-family: var(--serif); font-size: clamp(1.9rem, 4vw, 2.5rem);
+  font-weight: 500; line-height: 1.15; color: var(--cream);
+  margin: 0.4rem 0 0.7rem;
+}
+.ptw-sub {
+  font-family: var(--serif); font-style: italic; font-size: 1.06rem;
+  line-height: 1.6; color: var(--gold); max-width: 46ch;
+}
+.ptw-rule {
+  width: 54px; height: 1px;
+  background: linear-gradient(90deg, var(--gold), rgba(201,168,106,0));
+  margin: 1.5rem 0 1.9rem;
+}
+.ptw-hook {
+  font-family: var(--serif); font-size: 1.3rem; line-height: 1.5;
+  color: var(--cream); margin-bottom: 1.5rem;
+}
+.ptw-copy {
+  font-family: var(--serif); font-size: 1.06rem; line-height: 1.8;
+  color: var(--text); margin-bottom: 1.3rem;
+}
+.ptw-inside {
+  font-family: var(--sans); font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin: 2rem 0 1rem;
+}
+.ptw-list { list-style: none; margin-bottom: 1.9rem; }
+.ptw-list li {
+  position: relative; padding-left: 1.4rem; margin-bottom: 0.72rem;
+  font-family: var(--serif); font-size: 1.02rem; line-height: 1.65;
+  color: var(--text);
+}
+.ptw-list li::before {
+  content: "—"; position: absolute; left: 0; color: var(--gold);
+}
+.ptw-close {
+  font-family: var(--serif); font-size: 1.06rem; line-height: 1.8;
+  color: var(--text); margin-bottom: 1rem;
+}
+.ptw-cta-line {
+  font-family: var(--serif); font-size: 1.1rem; line-height: 1.7;
+  color: var(--gold); padding-left: 1.2rem;
+  border-left: 2px solid rgba(201,168,106,0.4);
+}
+.ptw-meta { margin-top: 2.1rem; }
+
+@media (max-width: 880px) {
+  .ptw { padding: 2rem 1.6rem; margin-top: 3rem; }
+}
