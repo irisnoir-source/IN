@@ -427,6 +427,33 @@ h2 {
 /* the gold "ai" — series signature, color only, never resized */
 .rtb-ai { color: var(--gold); }
 .section-books h2 { margin-bottom: 1.1rem; }
+/* Author Central hub link, inline beside the series heading. Sized off the
+   heading's own font-size so it scales with the clamp() instead of dwarfing
+   the h2; vertical-align keeps it on the baseline of a two-line heading. */
+.rtb-author-link {
+  font-family: var(--sans);
+  font-size: max(0.78rem, 0.3em);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  margin-left: 0.9rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(201, 168, 106, 0.35);
+  transition: color 0.3s, border-color 0.3s;
+}
+.rtb-author-link:hover {
+  color: var(--gold-bright);
+  border-bottom-color: var(--gold-bright);
+}
+@media (max-width: 640px) {
+  /* Stack under the title on narrow screens rather than forcing a nowrap
+     overflow next to a 2rem heading. */
+  .rtb-author-link { display: block; margin-left: 0; margin-top: 0.7rem; }
+}
 .rtb-rule {
   width: 190px;
   height: 1px;
