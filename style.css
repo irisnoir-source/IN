@@ -1299,6 +1299,17 @@ h2 {
 .gj-facts { margin-bottom: 2rem; }
 .gj-meta { margin-top: 1.8rem; }
 
+/* World/lore prose: wider measure than the hero synopsis (it is body copy, not
+   a sidebar blurb) and a gold-ruled final beat for the story's turn. */
+.gj-world-copy { max-width: 68ch; margin-bottom: 1.5rem; }
+.gj-world-turn {
+  border-left: 2px solid var(--gold);
+  padding-left: 1.4rem;
+  margin-top: 2.2rem;
+  color: var(--cream);
+}
+.gj-world-turn em { color: var(--gold); font-style: italic; }
+
 .gj-cast { margin: 3rem 0 1rem; }
 .gj-char {
   display: grid; grid-template-columns: 1.35fr 1fr;
