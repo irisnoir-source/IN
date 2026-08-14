@@ -1233,6 +1233,70 @@ h2 {
 }
 .essays-outro { text-align: center; padding-top: 1rem; }
 
+/* Static diagram inside an essay. These are light-themed PNGs on white, so
+   they get a cream mat + gold hairline rather than bleeding into the noir
+   page — framed like a plate in a book instead of a hole in the page. */
+.essay-fig {
+  margin: 2.8rem 0;
+}
+.essay-fig img {
+  display: block; width: 100%; height: auto;
+  background: var(--cream);
+  padding: 0.9rem;
+  border: 1px solid rgba(201,168,106,0.28);
+  border-radius: 3px;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.45);
+}
+.essay-fig figcaption {
+  font-family: var(--sans); font-size: 0.76rem; line-height: 1.6;
+  color: var(--text-dim); margin-top: 0.8rem;
+}
+@media (min-width: 1100px) {
+  .essay-fig { width: calc(100% + 220px); margin-left: -110px; }
+}
+
+/* Pointer between the two strands. */
+.essay-crosslink {
+  font-family: var(--sans); font-size: 0.82rem; line-height: 1.7;
+  color: var(--text-dim);
+  margin-top: 2.4rem; padding: 0.9rem 1.1rem;
+  border-left: 2px solid rgba(201,168,106,0.4);
+  background: rgba(30,25,38,0.4);
+  border-radius: 0 3px 3px 0;
+}
+.essay-crosslink a {
+  color: var(--gold); text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,106,0.35);
+}
+.essay-crosslink a:hover {
+  color: var(--gold-bright); border-bottom-color: var(--gold-bright);
+}
+
+/* Source footnote at the foot of an essay. */
+.essay-sources {
+  font-family: var(--sans); font-size: 0.72rem; line-height: 1.65;
+  color: var(--text-dim); opacity: 0.8; margin-top: 1.6rem;
+}
+
+/* Gold uppercase keyword lead-in inside an essay paragraph. */
+.essay-k {
+  font-family: var(--sans); font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold); margin-right: 0.5rem;
+}
+
+/* Bulleted list inside an essay body (em-dash marker, matches .bk-list). */
+.essay-list { list-style: none; margin: 0 0 1.5rem; }
+.essay-list li {
+  position: relative; padding-left: 1.4rem; margin-bottom: 0.8rem;
+  font-family: var(--serif); font-size: 1.08rem; line-height: 1.75;
+  color: var(--text);
+}
+.essay-list li::before {
+  content: "—"; position: absolute; left: 0; color: var(--gold);
+}
+
+
 /* Dated essay ("last updated") — for research strands that track a moving
    field and get revised, unlike the evergreen Enoch pieces. */
 .essay-updated {
@@ -1455,6 +1519,41 @@ h2 {
   .gj-card-art { max-width: 220px; }
   .gj-char { gap: 1.7rem; }
   .essays-hero { padding-top: 9rem; }
+}
+
+/* Reader disclaimer above the book cards — points at the cybersecurity
+   essays before someone buys a book about handing work to an AI. */
+.bk-disclaimer {
+  max-width: 720px;
+  margin: 2.6rem 0 0;
+  padding: 1.6rem 1.8rem;
+  background: rgba(30,25,38,0.55);
+  border: 1px solid rgba(201,168,106,0.22);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 3px 3px 0;
+}
+.bk-disclaimer-lead {
+  font-family: var(--sans); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.9rem;
+}
+.bk-disclaimer p:not(.bk-disclaimer-lead):not(.bk-disclaimer-note) {
+  font-family: var(--serif); font-size: 1.02rem; line-height: 1.75;
+  color: var(--text); margin-bottom: 0.9rem;
+}
+.bk-disclaimer a {
+  color: var(--gold); text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,106,0.4);
+}
+.bk-disclaimer a:hover {
+  color: var(--gold-bright); border-bottom-color: var(--gold-bright);
+}
+.bk-disclaimer-note {
+  font-family: var(--sans); font-size: 0.76rem; line-height: 1.6;
+  color: var(--text-dim); margin: 0;
+}
+@media (max-width: 640px) {
+  .bk-disclaimer { padding: 1.3rem 1.2rem; }
 }
 
 /* ── Book cards: whole card is one link straight to the Amazon listing ───

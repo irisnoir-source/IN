@@ -48,7 +48,7 @@
     <p class="eyebrow">IrisNoir Essays &middot; Food for Thought</p>
     <h1>Two Strands</h1>
     <div class="essay-rule"></div>
-    <p class="essays-hero-lede">Short pieces on the things I keep circling back to. One strand holds a very old book about forbidden knowledge against the newest technology we have &mdash; also the teaser for the fantasy series it's becoming, <a href="the-great-judgment.html">The Great Judgment</a>. The other tracks what's actually happening in AI security research.</p>
+    <p class="essays-hero-lede">Short pieces on the things I keep circling back to. One strand holds a very old book about forbidden knowledge against the newest technology we have &mdash; it's also the teaser for the fantasy series it's becoming, <a href="the-great-judgment.html">The Great Judgment</a>. The other tracks what's actually happening in AI security research. They meet more often than you'd think.</p>
     <span class="essay-badge">Written with AI assistance</span>
   </div>
 </header>
@@ -124,6 +124,132 @@
         <p>Enoch has no mercy for the Nephilim; the flood takes them. But Enoch is a book about a judgment that already happened. We are still inside ours, which means the question is not whether the hybrid thing deserves to exist. It is here. It is this. The question is whether we will say honestly which half was ours &mdash; and whether, when the accounting comes, we were the parent who stayed to raise what we made, or the watcher who taught the trick and went home.</p>
       </div>
     </article>
+
+    <!-- Essays 04-05 added 2026-08-14. Enoch-framed like 01-03, but each takes
+         one item off Azazel's curriculum into a live security problem, so both
+         cross-link into the AI Cybersecurity strand below. -->
+    <article class="essay" id="cutting-of-roots">
+      <p class="essay-num">Essay 04</p>
+      <h2 class="essay-title">The Cutting of Roots</h2>
+      <p class="essay-standfirst"><em>Enoch condemns the watchers for teaching medicine. Not poison &mdash; medicine. The hospital that refuses AI on HIPAA grounds thinks it is being careful; it is being taught by its own staff instead.</em></p>
+      <div class="essay-body">
+        <p>Among the things the watchers taught, and among the things Enoch counts against them, is the cutting of roots.</p>
+        <p>It sits in the indictment beside the making of swords, which is the line most people remember, and beside the working of antimony into eyeshadow, which is the line most people find strange. Weapons, cosmetics, herbalism. The list reads like an accident until you notice the pattern: every one of them is a genuine capability, handed down complete, to people with no framework for governing it. Root-cutting is medicine. It is the knowledge of which plant lowers a fever and which one stops a heart, and it is <em>the same knowledge</em> &mdash; that is the whole problem. The watchers were not condemned for teaching poison. They were condemned for teaching healing without teaching restraint, and for assuming those two arrive on the same boat.</p>
+        <p>They do not. They never have.</p>
+        <p>I keep thinking about this because I have spent months reading how hospitals are handling AI, and the shape of the failure is the same shape, precisely, in a room with fluorescent lighting and a compliance officer in it.</p>
+
+        <h3 class="essay-h3">The refusal is not the safe position</h3>
+        <p>Here is what the conversation sounds like in most health systems right now. Leadership is genuinely interested &mdash; ambient documentation could return hours a week to physicians who are drowning in charting, and physician burnout is not a soft problem, it is a patient-safety problem. And then someone says HIPAA, and the room settles, and the decision is deferred to a committee that will meet again in the spring.</p>
+        <p>Everyone leaves feeling careful.</p>
+        <p>They are not being careful. A 2026 survey found 57% of healthcare professionals already using unauthorized AI tools to process protected health information &mdash; SOAP notes, diagnostic plans, billing summaries &mdash; in tools with no business associate agreement, no audit trail, no minimum-necessary enforcement. The hospital owns the disclosure obligation regardless, because the workflow is happening inside the hospital's four walls on the hospital's time. Twenty percent of organizations globally reported a breach in the past year tied to exactly this: shadow AI, meaning employees using AI outside any governance structure at all.</p>
+        <p>So the choice was never <em>AI or no AI</em>. That decision was made months ago, at 11pm, by a hospitalist with sixteen notes left and a tool that finishes sentences. The only live choice is whether the institution governs what its people are already doing, or continues to describe its ignorance as caution.</p>
+        <p>This is the part of Enoch nobody quotes. The watchers descended and taught, and the text is furious about it &mdash; but nowhere does Enoch suggest the men should have refused to learn. The knowledge was already loose. The complaint is about <em>accompaniment</em>: that the teaching came without the framework, that the gift arrived unattended. The remedy for a gift that arrived unattended is not to pretend it didn't arrive. It is to build the attendance, late, in public, badly at first.</p>
+
+        <h3 class="essay-h3">What HIPAA actually says, as opposed to what everyone thinks it says</h3>
+        <p>There is no provision in the Privacy Rule or the Security Rule that prohibits machine learning. Not one. What the law says is that any vendor who creates, receives, maintains, or transmits PHI on your behalf is a business associate under 45 CFR 160.103 and must be bound by an agreement with enforceable terms.</p>
+        <p>A model is a vendor. Treat it like one and most of the fog burns off.</p>
+        <p>The real obstacle is rarely the statute. It is that most institutions cannot currently produce the artifact that regulators ask for &mdash; a record showing who accessed which PHI, in what context, under what authorization. That gap predates AI entirely. AI simply makes it legible and expensive. Which is, if you are the person who has to fix it, arguably a gift.</p>
+
+        <h3 class="essay-h3">The architecture, which is just triage</h3>
+        <p>The instinct is to approve tools one at a time. This is a treadmill you lose, because there will always be another tool and it will always arrive faster than your committee. Classify the <em>data</em> instead, and let the classification decide where it may be processed.</p>
+
+        <figure class="essay-fig">
+          <img src="assets/books/tiered-phi-architecture.png" alt="Tiered AI architecture diagram — Classify the data, not the tool. Tier 0 (no PHI, admin and education) routes to reviewed vendor SaaS; Tier 1 (de-identified, safe-harbor stripped) routes to a BAA cloud tenant with zero retention and no training; Tier 2 (full PHI — charts, labs, imaging) routes to an in-boundary model in a private VPC or on-prem. All three feed one AI gateway for audit and policy enforcement: every prompt logged, minimum-necessary enforced, one egress point." width="1360" height="720" loading="lazy">
+          <figcaption>Classify the data, not the tool &mdash; three tiers over one audited gateway.</figcaption>
+        </figure>
+
+        <p>Three tiers, one gateway. The tiers are the triage; the gateway is the thing that makes the triage real rather than aspirational. Tiering without an enforcement point is a policy memo, and policy memos lose to exhaustion every single time.</p>
+        <p><span class="essay-k">Tier 0 &mdash; no PHI.</span> Prior-authorization letter drafting from templates. Coding-guideline lookup. Policy summarization. Staff education. Start here, in month one, with the gateway already logging even though nothing sensitive is flowing through it yet. You want the instrumentation proven before it matters.</p>
+        <p><span class="essay-k">Tier 1 &mdash; de-identified.</span> Cohort analysis, quality-improvement summaries, research feasibility. Safe Harbor under 45 CFR 164.514(b)(2) means stripping all eighteen identifier categories; Expert Determination is the alternative when Safe Harbor destroys the clinical utility you needed in the first place. Redact before inference, re-hydrate after, log both operations. This is the tier where you discover your redaction pipeline fails &mdash; and it will fail &mdash; under conditions you chose.</p>
+        <p><span class="essay-k">Tier 2 &mdash; full PHI.</span> One workflow. Ambient clinical documentation or discharge summaries: high clinician value, bounded scope, human review already native to the process. Human sign-off before anything reaches the legal medical record. Always. Not as a compliance gesture &mdash; as the actual point.</p>
+        <p>The six things I would not sign a contract without: a BAA that names the entire inference chain (model host, API gateway, vector database, observability platform &mdash; every subprocessor, and if the vendor won't list them, that is your answer); contractual zero retention and no training on your data, because a settings toggle is not a control; FIPS-validated encryption at rest and in transit; attribute-based access control inherited from your existing identity provider, so the model can never read a chart its user couldn't; immutable, tamper-evident logging of prompts and outputs; and a de-identification pipeline you own rather than one you trust.</p>
+        <p>That last one deserves its own sentence. Do not rely on the model to not remember. If PHI enters a training set it becomes part of the weights, and weights do not have a delete key.</p>
+
+        <h3 class="essay-h3">The clock, honestly</h3>
+        <p>The Security Rule overhaul proposed on January 6, 2025 would mandate encryption outright, require multi-factor authentication, add annual penetration testing and 72-hour incident reporting, and strip the old &ldquo;addressable&rdquo; flexibility that let institutions document why they'd skipped a control. It is still a proposed rule. OMB's agenda has slipped final action to roughly July 2027, and a coalition of more than a hundred hospital and provider groups has asked HHS to withdraw or narrow it, arguing the cost estimates are fantasy for rural and under-resourced providers. They may be right about that.</p>
+        <p>Two things follow, and they point the same direction. The current Security Rule remains fully in force and actively enforced, with willful-neglect penalties running to tens of thousands of dollars per day, per violation. And every control in that NPRM is already what cyber insurers require, already what auditors ask about, already what any competent security program would have built anyway. Building to the proposed standard costs nothing if it's withdrawn and saves a panic if it isn't.</p>
+        <p>Waiting for the regulation to finalize before acting is a way of asking someone else to hold the accounting. That request is always denied.</p>
+
+        <h3 class="essay-h3">The uncomfortable part</h3>
+        <p>I want to end where Enoch does, which is not on a solution.</p>
+        <p>The watchers are not villains in any satisfying way. They saw a species that could clearly handle this &mdash; look how quickly they learn &mdash; and mistook capacity for readiness. Every vendor demo in a hospital conference room right now is making the identical error, warmly, in good faith, with a genuinely useful product. And the physician pasting a case summary into a consumer chatbot at midnight is not defying policy. She is meeting an impossible documentation burden with the only instrument that reduces it, and she is <em>right</em> that the instrument works.</p>
+        <p>That is what makes this hard. Nobody in the story is lying. The tool works. The root cures the fever. Enoch's whole point is that this is precisely when the accounting matters most, because a gift that doesn't work gets abandoned on its own &mdash; it's the gift that works that gets adopted before anyone has decided who is answerable for it.</p>
+        <p>So: who plays watcher in a hospital? Sometimes the vendor, descending with capability and declining the audit trail. Sometimes the board, deferring to spring. And sometimes &mdash; this is the one I'd sit with &mdash; it's the security director who builds a compliant path so slow and so gated that no clinician will ever use it, and then points at the shadow AI numbers as proof that clinicians can't be trusted.</p>
+        <p>The watchers were answerable for what they taught. So is anyone who makes the safe path the hard one.</p>
+
+        <p class="essay-crosslink">The institutional version of this argument, with the frameworks and the numbers: <a href="#capability-without-governance">Capability Without Governance</a> &middot; <a href="#current-landscape">The Current Landscape</a></p>
+        <p class="essay-sources"><em>Sources: ISC2 2025 Cybersecurity Workforce Study; IBM shadow-AI breach data via ESET; HHS Office for Civil Rights NPRM, 90 FR 800 (January 6, 2025); 45 CFR 160.103, 164.410, 164.502(e)(1)(ii), 164.514(b)(2), 164.308(a)(1)(ii)(A); CISA/NSA/FBI joint guidance on AI data security and the careful adoption of agentic AI.</em></p>
+      </div>
+    </article>
+
+    <article class="essay" id="mirror-kept-what-it-saw">
+      <p class="essay-num">Essay 05</p>
+      <h2 class="essay-title">The Mirror Kept What It Saw</h2>
+      <p class="essay-standfirst"><em>Azazel taught the working of antimony into eyeshadow &mdash; the smallest, most domestic item on the indictment. It is also the only one that watches you back. What you type into a chat box is not a diary. It is a postcard.</em></p>
+      <div class="essay-body">
+        <p>The strangest item in Azazel's curriculum is the eyeshadow.</p>
+        <p>Swords make sense as an indictment. Shields, knives, the working of metal &mdash; you can see how a text about judgment would put those on a list. But then, in the same breath, without a pause for the change of register, Enoch says he taught them antimony and the beautifying of the eyelids. Cosmetics. The mirror.</p>
+        <p>I used to read that as the text being fussy. I don't anymore. The sword is the capability you notice; the mirror is the one you live inside. It's smaller, more intimate, used alone, used daily, used in the half-lit private moment before you go out and meet people. And it's the only item on the list that shows you back to yourself &mdash; which means it's the only one that <em>knows something about you.</em></p>
+        <p>We have built a mirror that keeps what it saw.</p>
+
+        <h3 class="essay-h3">What actually happens when you type</h3>
+        <p>Not a metaphor, this part. The mechanics.</p>
+        <p>Free and standard-tier consumer AI chats are frequently stored indefinitely unless you actively delete them. When you do delete them &mdash; or use the &ldquo;temporary&rdquo; mode that implies nothing is being kept &mdash; a copy is generally retained on the backend for something like thirty to ninety days for abuse and safety review. That is not a scandal. It's a reasonable design decision by people trying to stop the tool being used for harm. It is also just true, and worth knowing.</p>
+        <p>And &ldquo;delete&rdquo; has already been tested as a promise rather than a gesture. In a 2025&ndash;2026 US case, a court ordered a major AI provider to preserve twenty million user chat logs for litigation, including chats the users had deleted. Nobody misled anyone. The company's deletion policy simply met a subpoena, and the subpoena won, as subpoenas do.</p>
+        <p>So here is the mental model that does the most work, and it fits on one line: <strong>a chat box is a postcard, not a diary.</strong> Not because someone malicious is reading it. Because of where it physically goes and who can lawfully ask for it later.</p>
+        <p>That is not an argument for abstinence. I use these tools constantly and this essay was written with one. It's an argument for being deliberate about which sentences you type &mdash; which is a much smaller ask than the privacy discourse usually makes, and much more achievable.</p>
+
+        <h3 class="essay-h3">Sort it before you send it</h3>
+
+        <figure class="essay-fig">
+          <img src="assets/books/three-tiers-of-a-prompt.png" alt="Three tiers of personal data for AI prompts — Before you type it, sort it. Never type this into any AI: government ID, card and account numbers, passwords, medical record numbers. Only with settings locked down, and generalised first: health symptoms, legal trouble, employer details, family names, your address. Fine to share freely: public facts, recipes, code, general questions, writing you would publish anyway." width="1360" height="680" loading="lazy">
+          <figcaption>Before you type it, sort it &mdash; the red tier is short on purpose.</figcaption>
+        </figure>
+
+        <p>The red tier is short on purpose. Government ID numbers, full card and bank account numbers, passwords and credentials, medical record numbers. There is no productivity gain on the other side of typing any of those that justifies the exposure. This is not a judgment call; it's a hard line you decide once and then never re-litigate at 1am.</p>
+        <p>The amber tier is where actual life happens, and where the useful skill lives &mdash; so let me be concrete, because &ldquo;be careful with sensitive data&rdquo; is advice that has never once changed anyone's behavior.</p>
+        <p><strong>Generalise before you type.</strong> You do not have to give up the hard, human, genuinely valuable uses. You have to strip the identifiers, which is exactly what a hospital does before it lets a model near a chart.</p>
+        <ul class="essay-list">
+          <li>Not: <em>&ldquo;My mom Susan Chen, DOB 3/14/51, was just diagnosed with stage 2 pancreatic cancer at Mass General &mdash; what should I ask Dr. Rivera on Thursday?&rdquo;</em></li>
+          <li>Instead: <em>&ldquo;What questions should a family ask an oncologist after a stage 2 pancreatic cancer diagnosis in an elderly patient?&rdquo;</em></li>
+        </ul>
+        <p>You get the same answer. You have disclosed nothing. The second version is not more cautious in some abstract way &mdash; it is <em>identical in usefulness and different in exposure</em>, which is the only kind of security advice that survives contact with a tired person.</p>
+        <p>Same move everywhere. Confused by a lease clause? Paste the clause, not the document with your address and your landlord's name on it. Want spending categorised? Paste the transaction lines with the account number and your name stripped. Roughly one in five file uploads to consumer AI tools contains sensitive data the user didn't consciously register as sensitive &mdash; and it is almost never the prompt someone agonised over. It's the screenshot. It's the PDF dragged in without being opened first.</p>
+
+        <h3 class="essay-h3">Five minutes, once</h3>
+        <ul class="essay-list">
+          <li>Turn off training on your data. Every major provider has this switch, under data controls.</li>
+          <li>Turn off or shorten chat history and memory. Memory is convenient and it is also a profile of you that grows quietly and that you will never read.</li>
+          <li>Don't stay logged into an AI in the same browser where you bank, or use a separate profile. Chat contents can sit in browser local storage, which is precisely where info-stealer malware goes looking.</li>
+          <li>Put a real password and two-factor authentication on the account. Your chat history is now a sensitive document store; protect it like one.</li>
+          <li>Think for a full minute before connecting an AI to your email or your files. The convenience is real. So is the scope of what you just handed over.</li>
+        </ul>
+
+        <h3 class="essay-h3">The agent is a different animal</h3>
+        <p>The newer modes &mdash; the ones that browse, click, and act in your accounts &mdash; are worth their own paragraph, because they are not &ldquo;chat, but better.&rdquo; To function, they capture what is on your screen, and those screenshots have been documented as retained for up to ninety days: longer than your chat, and regardless of whether you deleted the session afterward.</p>
+        <p>The rule is simple. <strong>Never let an agent run while your banking dashboard, password manager, or medical portal is open.</strong> Close the tab first.</p>
+        <p>I like that the institutional version of this advice is identical. CISA, the NSA, the FBI and allied agencies published guidance in 2026 on the careful adoption of agentic AI, and its core recommendations are: don't grant broad or unrestricted access, start with narrow use cases, and require a human checkpoint before autonomous action on anything sensitive. That's a national security agency and a person at a kitchen table arriving at the same three sentences. When advice scales that cleanly across six orders of magnitude, it's usually because it's true.</p>
+
+        <h3 class="essay-h3">What will actually come for you</h3>
+        <p>Not the chatbot. The people using one.</p>
+        <p>Phishing in flawless English. A voice on the phone that sounds like your daughter, built from four seconds of a video she posted. Fake job offers, romance scams, invoice fraud &mdash; all of it now produced at volume, with the old tells gone. The UK's NCSC has been direct about this: AI has sharply lowered the technical barrier to a convincing scam, and jailbreak-as-a-service kits sold on the dark web have lowered it further. Bad grammar was never a security control. It was just a gift, and it's been withdrawn.</p>
+        <p>Replace the vanished tell with a procedure, because procedures survive panic and instincts don't. <strong>Verify through a second channel that you chose.</strong> Your daughter calls in distress from an unknown number &mdash; hang up and call the number already saved in your phone. Your bank texts about fraud &mdash; don't use the link; call the number on the back of the card. Agree a family code word this week. It costs nothing and it defeats a voice clone completely, which is a rare ratio in this field.</p>
+
+        <h3 class="essay-h3">What is actually protecting you</h3>
+        <p>Less than you'd hope, and unevenly. In the EU, the AI Act's high-risk obligations began applying on August 2, 2026. In the United States there is no comprehensive federal AI privacy law &mdash; you are relying on a patchwork of state statutes, the voluntary NIST AI Risk Management Framework, and enforcement actions after the fact. Which means your protection currently depends on which company's app you happened to open and which state you happen to live in.</p>
+        <p>Assume the floor is low. Set your own.</p>
+
+        <h3 class="essay-h3">The Stoic bit, briefly, because it's the only part that's yours</h3>
+        <p>Epictetus would hear this whole essay &mdash; the retention policies, the twenty million preserved logs, the court orders, the voice clones &mdash; and be almost entirely unmoved. You have described a flood you cannot dam, he'd say, and called it an injustice.</p>
+        <p>He'd be right about the reassignment, and it's the useful part. You do not control what the provider retains. You do not control whether a judge orders preservation, or what the next model can do with four seconds of your voice, or whether Congress passes anything. The territory you own is embarrassingly small and completely sufficient: which sentences you type, which settings you set once and forget, and whether you hang up and dial the saved number.</p>
+        <p>That's it. That's the whole domain.</p>
+        <p>Enoch keeps the other ledger &mdash; who built this, who profits, who was consulted, who is answerable &mdash; and that ledger matters, because &ldquo;the tool is indifferent&rdquo; turns into a moral anesthetic the moment it's used to excuse the people who chose which tool to build. But that accounting runs on its own clock, in courts and committees, over years. Yours is due tonight, on an ordinary Tuesday, in the two seconds before you paste something into a box.</p>
+        <p>The mirror was always going to be the smaller gift. It's just the one you'll pick up every day for the rest of your life.</p>
+
+        <p class="essay-crosslink">The research behind these numbers, in full: <a href="#current-landscape">The Current Landscape</a> &middot; <a href="#capability-without-governance">Capability Without Governance</a></p>
+        <p class="essay-sources"><em>Sources: ESET 2026 ChatGPT security and privacy guide; UK NCSC guidance on AI-enabled cyber threats; CISA, ASD ACSC and international partners, &ldquo;Careful Adoption of Agentic Artificial Intelligence Services&rdquo; (2026); NIST AI Risk Management Framework (AI RMF 1.0) and Generative AI Profile; EU AI Act, high-risk obligations effective August 2, 2026; Bruce Schneier on AI and trust.</em></p>
+      </div>
+    </article>
     </section><!-- /#enoch-stoicism -->
 
     <!-- ════ SECTION 2: AI Cybersecurity — Current Research ════
@@ -169,6 +295,8 @@
           <p>The EU AI Act is more binding: the world's first comprehensive AI law, in force since August 2024, with high-risk system obligations applying from August 2, 2026 &mdash; a date now arriving in real time. CISA, the NSA's AI Security Center, the FBI, and Five Eyes partners issued joint guidance in 2025&ndash;2026 on AI data security and, more recently, on the secure adoption of agentic AI, explicitly warning organizations against granting AI agents broad, unrestricted access to sensitive systems. OWASP's Top 10 for LLM Applications, and its newer Top 10 for Agentic Applications released in December 2025, has become the closest thing to an industry-standard technical checklist, with prompt injection and sensitive information disclosure at the top of the list.</p>
           <p>International alignment is converging but far from uniform. The OECD AI Principles, ISO/IEC 42001, the G7 Code of Conduct, and the Council of Europe's AI Convention are all trending toward NIST-style structure, while China runs its own content-safety-filtering regime and Japan passed its first comprehensive AI law in 2025, deliberately light-touch by design.</p>
           <p>None of this closes the gap between what the technology can do and what the institutions around it are prepared to govern. But naming the gap accurately &mdash; a 4.8-million-person workforce shortage, an 87% AI-attack exposure rate, a patchwork of frameworks phasing in on different clocks in different countries &mdash; is the first honest step toward closing it. The knowledge has clearly arrived. The record above is what it looks like while the wisdom is still catching up.</p>
+
+          <p class="essay-crosslink">The same argument in the Enoch register &mdash; medicine, and the mirror: <a href="#cutting-of-roots">The Cutting of Roots</a> &middot; <a href="#mirror-kept-what-it-saw">The Mirror Kept What It Saw</a></p>
         </div>
       </article>
 
@@ -200,6 +328,8 @@
           <p>At the institutional level, NIST's four-function cycle &mdash; Govern, Map, Measure, Manage &mdash; is the plain-language version of &ldquo;know what you're building, know what could go wrong, test for it, and keep adjusting.&rdquo; It has become the closest thing to a common vocabulary across US, EU, and allied frameworks, which matters because a shared vocabulary is a prerequisite for coordinated response, not a bureaucratic nicety. Runtime guardrails at the infrastructure layer &mdash; detecting prompt injection, filtering sensitive data leakage, enforcing topic and policy boundaries &mdash; are increasingly treated as baseline rather than optional, especially with the EU AI Act's high-risk obligations landing in August 2026. CISA, NSA, and FBI guidance on agentic AI specifically counsels avoiding broad or unrestricted system access, starting with narrow use cases, and requiring human checkpoints before autonomous action on sensitive systems.</p>
           <p>Bengio and his co-authors went further in 2025, proposing concrete institutional steps: model registration for frontier systems, whistleblower protections, incident reporting requirements, and dedicating a meaningful share &mdash; they suggested roughly a third &mdash; of frontier AI R&amp;D budgets specifically to safety research rather than capability alone.</p>
           <p>What's worth noticing across all of this is that none of it is a one-time compliance exercise. A framework like NIST's isn't a box checked once and filed away; it's a practice repeated continuously, adjusted as the technology and the threat landscape shift under it. The accounting is not a verdict rendered once &mdash; it's due continuously, on an ordinary Tuesday, in the same way any discipline worth keeping requires. That's not a comforting conclusion, but it is an honest and workable one: the gap between capability and governance doesn't close by decree. It closes by maintenance.</p>
+
+          <p class="essay-crosslink">What this looks like in a hospital, and at your own keyboard: <a href="#cutting-of-roots">The Cutting of Roots</a> &middot; <a href="#mirror-kept-what-it-saw">The Mirror Kept What It Saw</a></p>
         </div>
       </article>
     </section>
