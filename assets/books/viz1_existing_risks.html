@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>Existing AI Risks — 2026 Snapshot</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-2:      #f4f3f0;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #82807a;
+    --border:         #e3e1db;
+    --series-1:       #2a78d6; /* blue */
+    --series-2:       #eb6834; /* orange */
+    --series-3:       #1baf7a; /* aqua */
+    --series-4:       #4a3aa7; /* violet */
+    --status-critical:#d03b3b;
+    --status-warning: #fab219;
+    --status-serious: #ec835a;
+    --seq-100: #cde2fb;
+    --seq-450: #2a78d6;
+    --seq-650: #104281;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-2:      #232320;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #8f8d84;
+      --border:         #35342f;
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --series-3:       #199e70;
+      --series-4:       #9085e9;
+      --status-critical:#e66767;
+      --status-warning: #fab219;
+      --status-serious: #ec835a;
+      --seq-100: #184f95;
+      --seq-450: #3987e5;
+      --seq-650: #9ec5f4;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-2:      #232320;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #8f8d84;
+    --border:         #35342f;
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --series-3:       #199e70;
+    --series-4:       #9085e9;
+    --status-critical:#e66767;
+    --status-warning: #fab219;
+    --status-serious: #ec835a;
+    --seq-100: #184f95;
+    --seq-450: #3987e5;
+    --seq-650: #9ec5f4;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .viz-root {
+    background: var(--surface-1);
+    color: var(--text-primary);
+    padding: 40px 32px 56px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .header { margin-bottom: 28px; }
+  .eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--series-2); margin: 0 0 8px;
+  }
+  h1 { font-size: 30px; margin: 0 0 8px; font-weight: 700; letter-spacing: -0.01em; }
+  .subhead { font-size: 15px; color: var(--text-secondary); max-width: 720px; line-height: 1.5; margin: 0; }
+  .theme-toggle {
+    position: absolute; top: 40px; right: 32px; font-size: 12px; color: var(--text-muted);
+    border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; cursor: pointer; background: var(--surface-2);
+  }
+
+  /* Stat tiles */
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 28px 0 36px; }
+  .stat-tile {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 18px 16px;
+  }
+  .stat-value { font-size: 30px; font-weight: 700; line-height: 1.1; }
+  .stat-label { font-size: 12.5px; color: var(--text-secondary); margin-top: 6px; line-height: 1.4; }
+  .stat-tile.critical .stat-value { color: var(--status-critical); }
+
+  /* Bar chart */
+  .section-title { font-size: 16px; font-weight: 700; margin: 40px 0 4px; }
+  .section-sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 18px; }
+  .bar-chart { display: flex; flex-direction: column; gap: 14px; margin-bottom: 8px; }
+  .bar-row { display: grid; grid-template-columns: 260px 1fr 64px; align-items: center; gap: 10px; }
+  .bar-name { font-size: 13px; color: var(--text-primary); }
+  .bar-track { position: relative; height: 22px; background: var(--seq-100); border-radius: 4px; overflow: hidden; }
+  .bar-fill {
+    height: 100%; border-radius: 4px 0 0 4px; background: var(--seq-450);
+    display: flex; align-items: center; transition: filter .15s;
+  }
+  .bar-row:hover .bar-fill { filter: brightness(1.08); }
+  .bar-val { font-size: 13px; font-weight: 700; text-align: right; }
+  .bar-note { grid-column: 1 / -1; font-size: 11.5px; color: var(--text-muted); margin-top: -8px; }
+
+  /* Risk category cards */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
+  .card {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 18px 16px; border-top: 4px solid var(--card-accent);
+  }
+  .card h3 { font-size: 14.5px; margin: 4px 0 12px; display: flex; align-items: center; gap: 8px; }
+  .card .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--card-accent); flex: none; }
+  .risk-item { display: flex; gap: 10px; padding: 8px 0; border-top: 1px solid var(--border); }
+  .risk-item:first-of-type { border-top: none; }
+  .risk-item .badge {
+    flex: none; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
+    padding: 2px 7px; border-radius: 999px; height: 18px; display: flex; align-items: center;
+  }
+  .badge.critical { background: color-mix(in srgb, var(--status-critical) 18%, transparent); color: var(--status-critical); }
+  .badge.serious { background: color-mix(in srgb, var(--status-serious) 22%, transparent); color: var(--status-serious); }
+  .badge.warning { background: color-mix(in srgb, var(--status-warning) 30%, transparent); color: #8a5a00; }
+  :root[data-theme="dark"] .badge.warning, @media (prefers-color-scheme: dark) { }
+  .risk-text { font-size: 12.8px; color: var(--text-secondary); line-height: 1.45; }
+  .risk-text b { color: var(--text-primary); font-weight: 600; }
+
+  .footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+
+  @media (max-width: 900px) {
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .cards { grid-template-columns: 1fr; }
+    .bar-row { grid-template-columns: 140px 1fr 50px; }
+  }
+</style>
+</head>
+<body>
+<div class="viz-root" id="vizRoot">
+  <div class="header">
+    <p class="eyebrow">AI &amp; Cybersecurity Briefing · 2026</p>
+    <h1>Existing AI Risks: A 2026 Snapshot</h1>
+    <p class="subhead">Where AI-driven capability is already outrunning governance — across the workforce meant to defend against it, the civilians whose data feeds it, and the institutions still writing the rules.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-tile critical">
+      <div class="stat-value">4.8M</div>
+      <div class="stat-label">Unfilled cybersecurity roles globally (ISC2, 2024)</div>
+    </div>
+    <div class="stat-tile critical">
+      <div class="stat-value">87%</div>
+      <div class="stat-label">Organizations reporting an AI-driven cyberattack in the past year</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-value">20%</div>
+      <div class="stat-label">Organizations breached in the past year via unmanaged "shadow AI" use</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-value">~1 in 5</div>
+      <div class="stat-label">File uploads to consumer AI tools estimated to contain sensitive data</div>
+    </div>
+  </div>
+
+  <div class="section-title">How exposure compares, by the numbers</div>
+  <p class="section-sub">Self-reported rates across the workforce and threat data cited in the brief.</p>
+  <div class="bar-chart" id="barChart"></div>
+
+  <div class="section-title">Where the risk actually lives</div>
+  <p class="section-sub">Three fronts, from the threat landscape down to the individual chat window.</p>
+  <div class="cards">
+    <div class="card" style="--card-accent: var(--series-2)">
+      <h3><span class="dot"></span>Threat landscape</h3>
+      <div class="risk-item"><span class="badge critical">Critical</span><span class="risk-text"><b>Autonomous vulnerability exploitation</b> — Five Eyes (2026) warns AI models can now discover and exploit flaws without a skilled human operator.</span></div>
+      <div class="risk-item"><span class="badge serious">Serious</span><span class="risk-text"><b>AI-written phishing &amp; deepfake voice calls</b> — now mainstream, per UK NCSC; the technical barrier to a convincing scam has dropped sharply.</span></div>
+      <div class="risk-item"><span class="badge serious">Serious</span><span class="risk-text"><b>Jailbreak-as-a-service kits</b> sold on the dark web lower the skill floor for attackers.</span></div>
+      <div class="risk-item"><span class="badge warning">Systemic</span><span class="risk-text"><b>Defender skills gap</b> — AI/ML defense is the #1 cited hiring need (41%), ahead of cloud security.</span></div>
+    </div>
+    <div class="card" style="--card-accent: var(--series-1)">
+      <h3><span class="dot"></span>Civilian data exposure</h3>
+      <div class="risk-item"><span class="badge serious">Serious</span><span class="risk-text"><b>Indefinite retention</b> — free/Plus chats often stored indefinitely; "deleted" chats can persist 30–90 days for review.</span></div>
+      <div class="risk-item"><span class="badge critical">Critical</span><span class="risk-text"><b>Agentic screen capture</b> — browsing/acting AI features can screenshot banking dashboards or credentials, retained regardless of deletion.</span></div>
+      <div class="risk-item"><span class="badge warning">Systemic</span><span class="risk-text"><b>"Delete" isn't a guarantee</b> — a 2025–26 US court order forced preservation of 20M user chat logs post-deletion.</span></div>
+      <div class="risk-item"><span class="badge serious">Serious</span><span class="risk-text"><b>Casual oversharing</b> — identity, financial, and health data routinely enter prompts without users registering the exposure.</span></div>
+    </div>
+    <div class="card" style="--card-accent: var(--series-3)">
+      <h3><span class="dot"></span>Institutional &amp; regulatory</h3>
+      <div class="risk-item"><span class="badge warning">Systemic</span><span class="risk-text"><b>Uneven protection</b> — EU AI Act obligations phase in from Aug 2026; the US relies on a voluntary framework and state-law patchwork.</span></div>
+      <div class="risk-item"><span class="badge serious">Serious</span><span class="risk-text"><b>Shadow AI</b> — ungoverned employee use of AI tools drives 1 in 5 organizational breaches.</span></div>
+      <div class="risk-item"><span class="badge warning">Systemic</span><span class="risk-text"><b>Skills shortage compounding risk</b> — 88% of ISC2 respondents tie a significant security event directly to the workforce gap.</span></div>
+      <div class="risk-item"><span class="badge critical">Critical</span><span class="risk-text"><b>Untrusted systems</b> — agents now "act on their own... dealing with other agents" without matching trust infrastructure (Schneier, 2026).</span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Sources: ISC2 2024/2025 Workforce Study · CybersecurityGuide.org (2026) · IBM Cybersecurity Trends 2026 · Schneier on Security (2026) · ESET 2026 ChatGPT Security Guide · Sonomos AI (2026). Compiled for the AI Cybersecurity project briefing, August 2026.
+  </div>
+</div>
+
+<script>
+  const bars = [
+    { name: "Orgs hit by an AI-driven cyberattack", value: 87, note: "" },
+    { name: "Respondents reporting a critical AI skills need", value: 95, note: "" },
+    { name: "Orgs w/ a security event tied to the skills gap", value: 88, note: "" },
+    { name: "Orgs breached via shadow AI use", value: 20, note: "" },
+    { name: "Hiring managers citing AI/ML defense as top skill need", value: 41, note: "up from 34% the prior year" },
+  ];
+  const track = document.getElementById('barChart');
+  bars.sort((a,b)=>b.value-a.value).forEach(b=>{
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.title = `${b.name}: ${b.value}%`;
+    row.innerHTML = `
+      <div class="bar-name">${b.name}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${b.value}%"></div></div>
+      <div class="bar-val">${b.value}%</div>
+      ${b.note ? `<div class="bar-note">${b.note}</div>` : ''}
+    `;
+    track.appendChild(row);
+  });
+
+  const toggle = document.getElementById('themeToggle');
+  if (toggle) {
+  toggle.addEventListener('click', () => {
+    const root = document.documentElement;
+    const current = root.getAttribute('data-theme');
+    if (current === 'dark') { root.setAttribute('data-theme','light'); toggle.textContent = 'Dark mode'; }
+    else { root.setAttribute('data-theme','dark'); toggle.textContent = 'Light mode'; }
+  });
+  }
+</script>
+</body>
+</html>

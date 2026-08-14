@@ -127,21 +127,85 @@
     </section><!-- /#enoch-stoicism -->
 
     <!-- ════ SECTION 2: AI Cybersecurity — Current Research ════
-         Added 2026-08-14. No essays written yet — using the site's
-         established coming-soon treatment (dashed border, reduced opacity,
-         no hover lift) rather than inventing a new affordance. Swap
-         .essay-section-soon for real <article class="essay"> blocks at launch. -->
-    <section class="essay-section essay-section-soon" id="ai-cybersecurity">
+         Went live 2026-08-14 with two essays + two embedded visuals.
+         Each piece carries its own "Last updated" date (.essay-updated) so
+         a research-tracking strand can be refreshed without republishing
+         the whole section — unlike the Enoch strand, which is evergreen.
+         Visuals are self-contained HTML documents in assets/books/ with
+         their own palette; they are iframed (not inlined) so their CSS
+         cannot leak into style.css. Both are pinned data-theme="dark". -->
+    <section class="essay-section" id="ai-cybersecurity">
       <p class="essay-section-num">Section Two</p>
       <h2 class="essay-section-title">AI Cybersecurity:<br>Current Research</h2>
       <div class="essay-rule"></div>
-      <p class="essay-section-note">The second strand: what's actually happening at the edge where machine learning meets security &mdash; prompt injection, model supply chains, agents given credentials, and the research trying to keep pace. Same format as above, read one in three minutes. Nothing published here yet.</p>
-      <span class="essay-badge">Essays in progress</span>
-      <p class="essay-section-soon-note">Want to know when the first one goes up? <a href="mailto:irisnoir.co@gmail.com?subject=Notify%20me%20—%20AI%20Cybersecurity%20essays">Email me</a>.</p>
+      <p class="essay-section-note">The second strand: what's actually happening where machine learning meets security &mdash; the workforce gap, AI-driven attacks, what happens to the data you type into a chat box, and the frameworks trying to catch up. Two essays, each with a data visual. This strand tracks a moving field, so every piece is dated and revised as the research changes.</p>
+      <span class="essay-badge">AI-assisted, human-verified</span>
+
+      <article class="essay" id="current-landscape">
+        <p class="essay-num">Essay 01</p>
+        <h2 class="essay-title">The Current Landscape</h2>
+        <p class="essay-updated">Last updated <time datetime="2026-08-14">14 August 2026</time></p>
+        <p class="essay-standfirst"><em>A 4.8-million-person workforce gap, an 87% AI-attack exposure rate, and a patchwork of frameworks phasing in on different clocks. The knowledge has clearly arrived; the record is what it looks like while the wisdom catches up.</em></p>
+        <div class="essay-body">
+          <p>There's an old observation about forbidden knowledge: the danger was never that the knowledge was false. The sword worked. The mirror worked. The danger was that capability arrived before anyone had built the institutions to hold it responsibly. Reading through this year's cybersecurity data, it's hard not to notice the same gap opening up again &mdash; not in myth, but in workforce reports and breach disclosures.</p>
+
+          <h3 class="essay-h3">A field running ahead of the people meant to staff it</h3>
+          <p>The global cybersecurity workforce gap sits near 4.8 million unfilled roles, according to ISC2's 2024 Workforce Study. What's more telling than the number itself is what happened next: for the first time in the study's history, ISC2 declined to publish a fresh 2025 gap figure. Not because the problem eased &mdash; 95% of respondents now report a critical skills need, and 88% experienced a significant security event tied directly to a skills shortage in the past year. The gap didn't close. It became too unstable to summarize in a single figure.</p>
+          <p>Layered on top of that shortage is a threat landscape that has visibly changed character. Eighty-seven percent of organizations reported experiencing an AI-driven cyberattack in the past year, per CybersecurityGuide.org's 2026 analysis of ISC2 data. That statistic marks a shift worth sitting with: &ldquo;AI threat&rdquo; is no longer a speculative category security teams plan around for someday. It is, for most teams, already the majority experience. Unsurprisingly, AI/ML defense has become the number one cited skills need among hiring managers &mdash; 41%, up from 34% the year before &mdash; ahead of cloud security and security engineering, the categories that used to top these lists by default.</p>
+          <p>Governments are treating this as more than a vendor talking point. In mid-2026, the Five Eyes intelligence alliance &mdash; the US, UK, Canada, Australia, and New Zealand &mdash; jointly warned about AI models' growing ability to autonomously discover and exploit software vulnerabilities, a capability that used to require a skilled human operator sitting at a keyboard. Bruce Schneier, the Harvard Kennedy School cryptographer whose commentary shapes much of the field's public conversation, has described the resulting environment plainly: &ldquo;We're moving into a world of untrusted systems.&rdquo; He's also cautioned people directly against entrusting sensitive information to AI tools, pointing to a landscape where AI agents increasingly act on their own &mdash; making decisions, taking actions, dealing with other agents &mdash; without the trust infrastructure to match.</p>
+
+          <figure class="essay-viz">
+            <iframe src="assets/books/viz1_existing_risks.html" title="Existing AI Risks: A 2026 Snapshot — stat tiles, a comparison bar chart, and three risk-category cards covering threat landscape, civilian data exposure, and institutional/regulatory risk" loading="lazy"></iframe>
+            <figcaption>Existing AI risks, 2026 &mdash; the numbers behind this essay. <a href="assets/books/viz1_existing_risks.html" target="_blank" rel="noopener">Open full size &rarr;</a></figcaption>
+          </figure>
+
+          <h3 class="essay-h3">What it means for the person, not just the enterprise</h3>
+          <p>Most public discussion of &ldquo;AI risk&rdquo; jumps straight to speculative, headline-grabbing scenarios and skips the exposure that is already live for ordinary users typing into a chat box. That's a mistake, because the everyday risk is well documented and concrete.</p>
+          <p>Free and Plus-tier consumer AI chats are often stored indefinitely unless a user actively deletes them &mdash; and even &ldquo;deleted&rdquo; or &ldquo;temporary&rdquo; chats are frequently retained on the backend for 30 to 90 days for abuse and safety review, per ESET's 2026 ChatGPT security guide. Agentic AI features that browse or act on a user's behalf raise the stakes further: they can capture screenshots of whatever is on screen, including banking dashboards or credential fields, and retain them for extended periods regardless of whether the session itself was deleted. Litigation has already tested the limits of &ldquo;delete&rdquo; as a promise rather than a UI gesture &mdash; a 2025&ndash;2026 US court order required a major AI provider to preserve 20 million user chat logs for a legal case, even for users who had deleted them.</p>
+          <p>The scale of casual exposure is significant: industry analyses estimate that roughly one in five file uploads to consumer AI tools contains sensitive personal or corporate data the user didn't fully register as sensitive in the moment. The 2023 Samsung incident, in which engineers pasted proprietary source code into ChatGPT and triggered a company-wide ban, remains the canonical cautionary case in 2026 guidance for exactly this reason. And it isn't only individuals absorbing the risk on their own behalf: twenty percent of organizations globally reported a data breach in the past year tied to &ldquo;shadow AI&rdquo; &mdash; employees using AI tools outside any governance or awareness structure, per IBM data cited by ESET.</p>
+
+          <h3 class="essay-h3">The frameworks trying to catch up</h3>
+          <p>Regulation is arriving, but unevenly, and mostly after the exposure it's meant to address. NIST's AI Risk Management Framework, released in January 2023 and expanded with a Generative AI Profile in mid-2024, has become the closest thing the US has to a national standard &mdash; voluntary, organized around four functions (Govern, Map, Measure, Manage), and increasingly the operational layer underneath other countries' and companies' compliance programs.</p>
+          <p>The EU AI Act is more binding: the world's first comprehensive AI law, in force since August 2024, with high-risk system obligations applying from August 2, 2026 &mdash; a date now arriving in real time. CISA, the NSA's AI Security Center, the FBI, and Five Eyes partners issued joint guidance in 2025&ndash;2026 on AI data security and, more recently, on the secure adoption of agentic AI, explicitly warning organizations against granting AI agents broad, unrestricted access to sensitive systems. OWASP's Top 10 for LLM Applications, and its newer Top 10 for Agentic Applications released in December 2025, has become the closest thing to an industry-standard technical checklist, with prompt injection and sensitive information disclosure at the top of the list.</p>
+          <p>International alignment is converging but far from uniform. The OECD AI Principles, ISO/IEC 42001, the G7 Code of Conduct, and the Council of Europe's AI Convention are all trending toward NIST-style structure, while China runs its own content-safety-filtering regime and Japan passed its first comprehensive AI law in 2025, deliberately light-touch by design.</p>
+          <p>None of this closes the gap between what the technology can do and what the institutions around it are prepared to govern. But naming the gap accurately &mdash; a 4.8-million-person workforce shortage, an 87% AI-attack exposure rate, a patchwork of frameworks phasing in on different clocks in different countries &mdash; is the first honest step toward closing it. The knowledge has clearly arrived. The record above is what it looks like while the wisdom is still catching up.</p>
+        </div>
+      </article>
+
+      <article class="essay" id="capability-without-governance">
+        <p class="essay-num">Essay 02</p>
+        <h2 class="essay-title">Capability Without Governance</h2>
+        <p class="essay-updated">Last updated <time datetime="2026-08-14">14 August 2026</time></p>
+        <p class="essay-standfirst"><em>The superintelligence-risk argument, stated carefully and with real sources &mdash; then the guardrails actually being proposed. The gap between capability and governance doesn't close by decree. It closes by maintenance.</em></p>
+        <div class="essay-body">
+          <p>Every generation that receives a powerful new tool faces the same two-part question: can this be done, and may it be done responsibly. The gap between those two questions &mdash; capability outrunning governance &mdash; is the throughline of this essay, applied to the specific and current case of advanced AI.</p>
+
+          <h3 class="essay-h3">Taking the extreme case seriously, without exaggerating it</h3>
+          <p>It's tempting to treat catastrophic AI risk as either science fiction or marketing hype from companies that benefit from sounding dangerous. Neither dismissal survives contact with who is actually making the argument and how carefully they're making it.</p>
+          <p>The Center for AI Safety's 2023 statement was deliberately one sentence: &ldquo;Mitigating the risk of extinction from AI should be a global priority alongside other societal-scale risks such as pandemics and nuclear war.&rdquo; It was signed by, among hundreds of others, Geoffrey Hinton and Yoshua Bengio &mdash; the two most-cited living AI researchers and both Turing Award winners &mdash; and, notably, by the CEOs of OpenAI, Google DeepMind, and Anthropic. That's not a statement from outside critics warning about a technology someone else is building. It's a statement from the people building it.</p>
+          <p>In the 2025 International Scientific Report on the Safety of Advanced AI &mdash; a UK-government-convened synthesis that functions as something close to an IPCC report for AI risk &mdash; Bengio and co-authors catalogued loss-of-control scenarios and AI-assisted biological or chemical misuse among the concerns the field takes seriously, not fringe positions confined to a vocal minority. Stuart Russell, the UC Berkeley professor whose textbook trains most of the field, has put the underlying mechanism plainly: &ldquo;If we pursue [our current approach], then we will eventually lose control over the machines.&rdquo;</p>
+          <p>In October 2025, the Future of Life Institute organized a statement calling for a prohibition on the development of superintelligence until there is broad scientific consensus it can be done safely, with public buy-in. By early 2026 it had drawn more than 133,000 signatories spanning Hinton, Bengio, Russell, multiple Nobel laureates, national-security figures including a former US Joint Chiefs Chairman, and voices from across the political spectrum &mdash; itself a signal that this isn't a niche or partisan concern.</p>
+          <p>The honest picture is one of informed uncertainty rather than prophecy. A 2023 survey of researchers at top AI conferences found 38% assigning at least 10% odds to an extremely bad outcome &mdash; up to human extinction &mdash; conditional on AI matching or exceeding human performance broadly; separate polling from 2024&ndash;2026 clusters around a roughly 14% average estimate. Timelines are shifting fast and genuinely disputed: Bengio's 2023 estimate put superintelligence within roughly 5 to 20 years with high confidence; Hinton in 2024 put the odds at about 50% within 20 years; and public forecasting aggregates for AGI moved from an average estimate of 2055 in 2020 to under a decade out by 2026. That compression is itself part of the story &mdash; not proof of anything, but a measure of how quickly informed opinion is updating.</p>
+          <p>What matters for this essay is the shape of the argument, not the specific probability. None of these researchers claim the technology is fake or that its benefits aren't real. They argue that capability without accompanying governance is the actual danger &mdash; the same distinction between what can be done and what may be done responsibly, now being made by Turing Award winners in a scientific report rather than in a private letter.</p>
+
+          <h3 class="essay-h3">What accompaniment could actually look like</h3>
+          <p>If the risk is capability outrunning governance, the proposed solutions are, almost by definition, attempts to let governance catch up &mdash; at both the individual and institutional level.</p>
+
+          <figure class="essay-viz">
+            <iframe src="assets/books/viz2_proposed_solutions.html" title="Proposed Solutions: Closing the Governance Gap — the NIST Govern/Map/Measure/Manage cycle, a two-column comparison of individual versus organizational guardrails, and key policy dates" loading="lazy"></iframe>
+            <figcaption>Proposed solutions &mdash; the NIST cycle, individual vs. organizational guardrails, and the policy calendar. <a href="assets/books/viz2_proposed_solutions.html" target="_blank" rel="noopener">Open full size &rarr;</a></figcaption>
+          </figure>
+
+          <p>At the individual level, the guidance is more actionable than it might sound. Default to the most privacy-preserving setting on any AI tool &mdash; no training on your data, chat history off &mdash; and treat that as a floor, not a guarantee, since deletion promises have already been overridden by litigation once. Keep a hard mental category of data that never goes into a prompt: government IDs, full financial account numbers, medical record numbers, passwords and credentials. Be specifically deliberate about agentic or autonomous AI features &mdash; the ones that click, browse, or transact on your behalf &mdash; since they carry materially more exposure than a plain chat window. And treat AI-generated threats like deepfake voice calls, AI-written phishing, and jailbreak-as-a-service kits sold on the dark web as mainstream rather than exotic; the UK NCSC and 2026 guidance broadly agree that the technical barrier to a convincing scam has dropped sharply.</p>
+          <p>At the institutional level, NIST's four-function cycle &mdash; Govern, Map, Measure, Manage &mdash; is the plain-language version of &ldquo;know what you're building, know what could go wrong, test for it, and keep adjusting.&rdquo; It has become the closest thing to a common vocabulary across US, EU, and allied frameworks, which matters because a shared vocabulary is a prerequisite for coordinated response, not a bureaucratic nicety. Runtime guardrails at the infrastructure layer &mdash; detecting prompt injection, filtering sensitive data leakage, enforcing topic and policy boundaries &mdash; are increasingly treated as baseline rather than optional, especially with the EU AI Act's high-risk obligations landing in August 2026. CISA, NSA, and FBI guidance on agentic AI specifically counsels avoiding broad or unrestricted system access, starting with narrow use cases, and requiring human checkpoints before autonomous action on sensitive systems.</p>
+          <p>Bengio and his co-authors went further in 2025, proposing concrete institutional steps: model registration for frontier systems, whistleblower protections, incident reporting requirements, and dedicating a meaningful share &mdash; they suggested roughly a third &mdash; of frontier AI R&amp;D budgets specifically to safety research rather than capability alone.</p>
+          <p>What's worth noticing across all of this is that none of it is a one-time compliance exercise. A framework like NIST's isn't a box checked once and filed away; it's a practice repeated continuously, adjusted as the technology and the threat landscape shift under it. The accounting is not a verdict rendered once &mdash; it's due continuously, on an ordinary Tuesday, in the same way any discipline worth keeping requires. That's not a comforting conclusion, but it is an honest and workable one: the gap between capability and governance doesn't close by decree. It closes by maintenance.</p>
+        </div>
+      </article>
     </section>
 
     <div class="essays-outro">
-      <p class="essays-outro-note">These essays are the philosophical spine of a fantasy series in progress.</p>
+      <p class="essays-outro-note">The Enoch &amp; Stoics essays are the philosophical spine of a fantasy series in progress.</p>
       <a class="btn btn-gold" href="the-great-judgment.html">Enter The Great Judgment &rarr;</a>
       <a class="btn btn-ghost" href="index.html#top">Back to IrisNoir</a>
     </div>
@@ -153,6 +217,36 @@
   <img class="footer-logo" src="assets/irisnoir-logo-transparent.png" alt="IrisNoir — iris flower logo" width="1024" height="1024" loading="lazy">
   <p>© 2026 IrisNoir · Boston, MA</p>
 </footer>
+
+<!-- Auto-fit the embedded data visuals to their content height. They're
+     same-origin static files, so contentDocument is readable. CSS carries a
+     generous fixed height as the no-JS fallback; this trims it to the exact
+     content so there's no dead space or inner scrollbar at any viewport. -->
+<script>
+(function () {
+  var frames = document.querySelectorAll('.essay-viz iframe');
+  function fit(f) {
+    try {
+      var d = f.contentDocument;
+      if (!d || !d.body) return;
+      // Collapse first: a too-tall iframe stretches its own body, so
+      // scrollHeight would just echo the current height and never shrink.
+      f.style.height = '0px';
+      var h = Math.max(d.documentElement.scrollHeight, d.body.scrollHeight);
+      f.style.height = (h > 80 ? h : 1420) + 'px';
+    } catch (e) { /* leave the CSS fallback height in place */ }
+  }
+  frames.forEach(function (f) {
+    if (f.contentDocument && f.contentDocument.readyState === 'complete') fit(f);
+    f.addEventListener('load', function () { fit(f); });
+  });
+  var t;
+  window.addEventListener('resize', function () {
+    clearTimeout(t);
+    t = setTimeout(function () { frames.forEach(fit); }, 150);
+  });
+})();
+</script>
 
 </body>
 </html>

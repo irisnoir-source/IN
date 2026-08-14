@@ -1233,6 +1233,61 @@ h2 {
 }
 .essays-outro { text-align: center; padding-top: 1rem; }
 
+/* Dated essay ("last updated") — for research strands that track a moving
+   field and get revised, unlike the evergreen Enoch pieces. */
+.essay-updated {
+  font-family: var(--sans); font-size: 0.72rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-dim); margin: -0.6rem 0 1.4rem;
+}
+.essay-updated time { color: var(--gold); }
+
+/* Sub-head inside a long essay body. */
+.essay-h3 {
+  font-family: var(--serif); font-size: 1.45rem; font-weight: 500;
+  line-height: 1.25; color: var(--cream);
+  margin: 2.8rem 0 1.2rem;
+}
+
+/* Embedded data visual. The vizzes are self-contained HTML documents with
+   their own palette, so they're iframed rather than inlined — that sandboxes
+   their CSS from style.css entirely. They pin data-theme="dark" internally
+   so they read as part of the page instead of a white slab.
+   Full-bleed past the 720px .essays-wrap so the charts get real width. */
+.essay-viz {
+  margin: 2.8rem 0;
+  width: 100%;
+}
+.essay-viz iframe {
+  display: block; width: 100%; height: 1420px;
+  border: 1px solid rgba(201,168,106,0.22);
+  border-radius: 3px;
+  background: #1a1a19;
+  overflow: hidden;
+}
+/* JS below auto-fits each iframe to its content; the heights above are the
+   no-JS fallback (generous on purpose so nothing is clipped without JS). */
+.essay-viz figcaption {
+  font-family: var(--sans); font-size: 0.76rem; line-height: 1.6;
+  color: var(--text-dim); margin-top: 0.8rem;
+}
+.essay-viz figcaption a {
+  color: var(--gold); text-decoration: none;
+  border-bottom: 1px solid rgba(201,168,106,0.35);
+  white-space: nowrap;
+}
+.essay-viz figcaption a:hover {
+  color: var(--gold-bright); border-bottom-color: var(--gold-bright);
+}
+@media (min-width: 1100px) {
+  /* let the visuals breathe wider than the reading measure */
+  .essay-viz { width: calc(100% + 220px); margin-left: -110px; }
+}
+@media (max-width: 700px) {
+  .essay-viz iframe { height: 1180px; }
+}
+
+
 /* Named essay sections on essays.html — two independent strands
    (Enoch & Stoicism, AI Cybersecurity) grouped under their own headings. */
 .essay-section {
@@ -1254,7 +1309,9 @@ h2 {
   color: var(--text-dim); max-width: 60ch; margin-bottom: 3.2rem;
 }
 /* Section with no essays published yet — reuses the site's coming-soon
-   treatment (dashed, dimmed) rather than a new affordance. */
+   treatment (dashed, dimmed) rather than a new affordance.
+   NOTE: unused since 2026-08-14 (the AI Cybersecurity strand launched);
+   kept for the next strand that starts empty. */
 .essay-section-soon {
   opacity: 0.75;
   border: 1px dashed rgba(201,168,106,0.28);
