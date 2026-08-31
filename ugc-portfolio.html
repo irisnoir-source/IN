@@ -470,6 +470,43 @@
   transform: translate(-50%, -50%) scale(1.1);
   background: var(--gold-bright);
 }
+
+/* Sub-heading inside a niche modal — separates folded-in brand product work
+   from the main gallery (added 2026-08-29 with the UGC consolidation). */
+.modal-subhead {
+  margin-top: 2.2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(201,168,106,0.22);
+}
+.modal-subhead h3 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+.ai-tag {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(201,168,106,0.4);
+  border-radius: 2px;
+  padding: 0.18rem 0.5rem;
+  vertical-align: middle;
+}
+.modal-shop {
+  margin-top: 1.1rem;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+.modal-shop a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,168,106,0.35); }
+.modal-shop a:hover { color: var(--gold-bright); }
 </style>
 </head>
 <body>
@@ -588,6 +625,24 @@
       <img src="assets/ugc-portfolio/pet/aurey-new-1.jpg" alt="Aurelius">
       <img src="assets/ugc-portfolio/pet/aurey-new-2.jpg" alt="Aurelius">
     </div>
+    <!-- Moved here from the home page #portfolio section 2026-08-29 (UGC consolidation). -->
+    <div class="modal-header modal-subhead">
+      <h3>Brand Product Work</h3>
+      <p>AI-composed from my own photos &mdash; concept-to-ad content, no shoot day required. <span class="ai-tag">AI-generated</span></p>
+    </div>
+    <div class="modal-gallery">
+      <img src="assets/portfolio/aurey-doodwoof-ai.jpg" alt="Aurelius beside the Doodle Detangler Spray by Dood Woof">
+      <div class="gallery-video" data-video="assets/portfolio/aurey-ropetoy-play.mp4">
+        <img src="assets/portfolio/aurey-ropetoy-poster.jpg" alt="Aurelius with the Purr Harbor interactive rope toy">
+        <div class="video-play">&#9654;</div>
+      </div>
+      <img src="assets/portfolio/aurey-soccerball.jpg" alt="Aurelius with the SunGrow soccer ball toy">
+      <div class="gallery-video" data-video="assets/portfolio/aurey-soccerball-play.mp4">
+        <img src="assets/portfolio/aurey-soccerball-play-poster.jpg" alt="Aurelius playing with the SunGrow soccer ball">
+        <div class="video-play">&#9654;</div>
+      </div>
+    </div>
+    <p class="modal-shop">Featured toys: <a href="https://www.chewy.com/purr-harbor-smart-interactive-rope/dp/4469534" target="_blank" rel="noopener">Purr Harbor Interactive Rope Toy</a> &middot; <a href="https://www.chewy.com/sungrow-soccer-ball-dog-cat-toy/dp/753862" target="_blank" rel="noopener">SunGrow Soccer Ball</a></p>
   </div>
 </div>
 
@@ -617,7 +672,9 @@
       <img src="assets/ugc-portfolio/skincare/burbur-faceless.jpg" alt="BurBur Oil faceless UGC">
       <img src="assets/ugc-portfolio/skincare/burbur-1.jpg" alt="BurBur Oil product">
       <img src="assets/ugc-portfolio/skincare/medicube-ugc.jpg" alt="Medicube product">
+      <img src="assets/portfolio/skincare-kopari-ai.jpg" alt="Kopari Ultra Restore body cream in a noir editorial still">
     </div>
+    <p class="modal-shop"><span class="ai-tag">AI-generated</span> Editorial product storytelling &mdash; clean stills, honest first impressions.</p>
   </div>
 </div>
 
