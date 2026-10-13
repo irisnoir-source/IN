@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>What Changed Since Launch — AI Cybersecurity Briefing</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --surface-2:      #f4f3f0;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #82807a;
+    --border:         #e3e1db;
+    --series-1:       #2a78d6; /* blue */
+    --series-2:       #eb6834; /* orange */
+    --series-3:       #1baf7a; /* aqua */
+    --status-good:    #0ca30c;
+    --status-critical:#d03b3b;
+    --status-warning: #fab219;
+    --status-serious: #ec835a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --surface-2:      #232320;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #8f8d84;
+      --border:         #35342f;
+      --series-1:       #3987e5;
+      --series-2:       #d95926;
+      --series-3:       #199e70;
+      --status-good:    #0ca30c;
+      --status-critical:#e66767;
+      --status-warning: #fab219;
+      --status-serious: #ec835a;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1:      #1a1a19;
+    --surface-2:      #232320;
+    --text-primary:   #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted:     #8f8d84;
+    --border:         #35342f;
+    --series-1:       #3987e5;
+    --series-2:       #d95926;
+    --series-3:       #199e70;
+    --status-good:    #0ca30c;
+    --status-critical:#e66767;
+    --status-warning: #fab219;
+    --status-serious: #ec835a;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .viz-root {
+    background: var(--surface-1);
+    color: var(--text-primary);
+    padding: 40px 32px 56px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .header { margin-bottom: 28px; }
+  .eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--series-2); margin: 0 0 8px;
+  }
+  h1 { font-size: 30px; margin: 0 0 8px; font-weight: 700; letter-spacing: -0.01em; }
+  .subhead { font-size: 15px; color: var(--text-secondary); max-width: 740px; line-height: 1.5; margin: 0; }
+
+  .section-title { font-size: 16px; font-weight: 700; margin: 36px 0 4px; }
+  .section-sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 18px; }
+
+  /* Change cards (before -> after) */
+  .change-list { display: flex; flex-direction: column; gap: 12px; }
+  .change-item {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px 14px; display: grid; grid-template-columns: 110px 1fr; gap: 16px; align-items: start;
+  }
+  .change-item .badge {
+    font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
+    padding: 3px 9px; border-radius: 999px; height: 20px; display: inline-flex; align-items: center; width: fit-content;
+  }
+  .badge.critical { background: color-mix(in srgb, var(--status-critical) 18%, transparent); color: var(--status-critical); }
+  .badge.warning  { background: color-mix(in srgb, var(--status-warning) 30%, transparent); color: #8a5a00; }
+  .badge.serious  { background: color-mix(in srgb, var(--status-serious) 22%, transparent); color: var(--status-serious); }
+  :root[data-theme="dark"] .badge.warning { color: #fab219; }
+  .change-what { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-top: 6px; }
+  .change-text { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+  .change-text .was { color: var(--text-muted); text-decoration: line-through; }
+  .change-text .now { color: var(--text-primary); font-weight: 600; }
+  .change-text .arrow { color: var(--text-muted); margin: 0 4px; }
+
+  /* Held steady */
+  .steady-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .steady-item {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px 12px; display: flex; gap: 10px;
+  }
+  .steady-item .tick {
+    flex: none; width: 18px; height: 18px; border-radius: 50%; margin-top: 1px;
+    background: color-mix(in srgb, var(--status-good) 18%, transparent);
+    display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--status-good); font-weight: 700;
+  }
+  .steady-text { font-size: 12.8px; color: var(--text-secondary); line-height: 1.5; }
+  .steady-text b { color: var(--text-primary); font-weight: 600; }
+
+  .footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); line-height: 1.6; }
+
+  @media (max-width: 900px) {
+    .change-item { grid-template-columns: 1fr; }
+    .steady-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="viz-root" id="vizRoot">
+  <div class="header">
+    <p class="eyebrow">AI &amp; Cybersecurity Briefing · Updated October 2026</p>
+    <h1>What Changed Since Launch</h1>
+    <p class="subhead">This strand tracks a moving field on purpose. Checked against the 14 August 2026 launch version, three things moved and three held steady — here's exactly what, with nothing smoothed over.</p>
+  </div>
+
+  <div class="section-title">Corrected or sharpened</div>
+  <p class="section-sub">The research got re-verified against current sources; these are the facts that no longer read the same.</p>
+  <div class="change-list">
+    <div class="change-item">
+      <span class="badge critical">Corrected</span>
+      <div>
+        <div class="change-what">EU AI Act high-risk deadline</div>
+        <div class="change-text"><span class="was">Aug 2, 2026 — obligations "arriving in real time"</span><span class="arrow">&rarr;</span><span class="now">Deferred to Dec 2, 2027 (standalone high-risk) / Aug 2, 2028 (embedded in regulated products)</span>, per a Digital Omnibus that entered into force days before the original deadline. Transparency &amp; general-purpose-AI provider rules still took effect on schedule in Aug 2026 — it's the heaviest compliance lift that moved, not all of it.</div>
+      </div>
+    </div>
+    <div class="change-item">
+      <span class="badge warning">Sharpened</span>
+      <div>
+        <div class="change-what">Five Eyes AI warning, dated</div>
+        <div class="change-text"><span class="was">"mid-2026"</span><span class="arrow">&rarr;</span><span class="now">June 22, 2026</span> — the exact date is now confirmed, along with their own framing of the threat timeline: "not years, it is months."</div>
+      </div>
+    </div>
+    <div class="change-item">
+      <span class="badge serious">Updated</span>
+      <div>
+        <div class="change-what">Future of Life Institute signatories</div>
+        <div class="change-text"><span class="was">133,000+ (early 2026)</span><span class="arrow">&rarr;</span><span class="now">134,000+ (as of March 2026)</span> on the superintelligence-pause statement.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Held steady</div>
+  <p class="section-sub">Re-checked against current 2026 data and still standing as reported at launch.</p>
+  <div class="steady-list">
+    <div class="steady-item"><span class="tick">✓</span><span class="steady-text"><b>4.8M</b> unfilled cybersecurity roles — ISC2 again declined to publish a fresh 2025 gap figure.</span></div>
+    <div class="steady-item"><span class="tick">✓</span><span class="steady-text"><b>87%</b> of organizations reporting an AI-driven cyberattack in the past year.</span></div>
+    <div class="steady-item"><span class="tick">✓</span><span class="steady-text"><b>41%</b> of hiring managers cite AI/ML defense as the #1 skills need, still ahead of cloud security.</span></div>
+  </div>
+
+  <div class="footer">
+    Tracks changes against the 14 August 2026 launch of "The Current Landscape" and "Capability Without Governance." Sources: EU Digital Omnibus on AI (July 2026) · Five Eyes joint advisory (June 2026) · Future of Life Institute signatory count (March 2026) · ISC2 2024/2025 Workforce Study · CybersecurityGuide.org (2026). Compiled October 2026.
+  </div>
+</div>
+</body>
+</html>
