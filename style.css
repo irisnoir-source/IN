@@ -1154,6 +1154,26 @@ h2 {
   max-width: 60ch; color: var(--text); font-size: 1.05rem;
   margin-bottom: 1.6rem;
 }
+/* Hero film (2026-10-13). A portrait short that autoplays muted under the
+   lede. Capped at 360px wide so a 9:16 clip reads as an inset, not a
+   skyscraper; the <video> keeps its own aspect via width/height attrs. */
+.essays-hero-film {
+  margin: 0 0 1.8rem;
+  max-width: 360px;
+}
+.essays-hero-film video {
+  display: block; width: 100%; height: auto;
+  border: 1px solid rgba(201,168,106,0.22);
+  border-radius: 3px;
+  background: var(--noir-3);
+}
+.essays-hero-film figcaption {
+  font-family: var(--sans); font-size: 0.72rem; line-height: 1.5;
+  color: var(--text-dim); margin-top: 0.6rem;
+}
+@media (max-width: 480px) {
+  .essays-hero-film { max-width: 100%; }
+}
 .essay-badge {
   display: inline-block; font-family: var(--sans);
   font-size: 0.66rem; font-weight: 600; letter-spacing: 0.22em;
